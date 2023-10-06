@@ -7,10 +7,11 @@ from os.path import exists, splitext
 # Define target hosts
 env.hosts = ['100.25.142.90', '54.145.241.45']
 
+
 @task
 def do_deploy(archive_path):
     """Deploys an archive to web servers."""
-    
+
     # Check if the archive exists
     if not exists(archive_path):
         return False
@@ -21,7 +22,8 @@ def do_deploy(archive_path):
 
     # Define remote paths
     temp_remote_path = "/tmp/{}".format(archive_name)
-    release_remote_path = "/data/web_static/releases/{}".format(file_name_without_extension)
+    release_remote_path = "/data/web_static/releases/{}"
+    \.format(file_name_without_extension)
 
     # Upload the archive to the remote server's temp directory
     put(archive_path, '/tmp/')
