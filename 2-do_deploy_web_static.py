@@ -7,6 +7,7 @@ from os.path import exists, splitext
 # Define target hosts
 env.hosts = ['100.25.142.90', '54.145.241.45']
 
+
 @task
 def do_pack():
     """Archives the web_static folder."""
