@@ -21,13 +21,15 @@ class State(BaseModel, Base):
         @property
         def cities(self):
             """ Getter attribute cities """
+ 
             from models import storage
-            citiesList = []
-            citiesAll = storage.all(City)
-            for city in citiesAll.values():
+
+            city_list = []
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
                 if city.state_id == self.id:
-                    citiesList.append(city)
-            return citiesList
+                    city_list.append(city)
+            return city_list
 
         # @property
         # def cities(self):
