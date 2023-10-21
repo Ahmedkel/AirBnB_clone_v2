@@ -4,6 +4,7 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
+
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """ HTML page with list of states sorted by name """
