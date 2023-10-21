@@ -18,27 +18,12 @@ class State(BaseModel, Base):
     else:
         name = ""
 
-    
-    if models.storage_t != "db":
         @property
         def cities(self):
             """ Getter attribute cities """
-
             from models import storage
-
             city_list = []
-            all_cities = models.storage.all(City)
-            for city in all_cities.values():
+            for city in storage.all(City).values():
                 if city.state_id == self.id:
                     city_list.append(city)
             return city_list
-
-        # @property
-        # def cities(self):
-        #    """ Getter attribute cities """
-        #    from models import storage
-        #    city_list = []
-        #    for city in storage.all(City).values():
-        #        if city.state_id == self.id:
-        #            city_list.append(city)
-        #    return city_list
