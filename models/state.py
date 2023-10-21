@@ -16,12 +16,25 @@ class State(BaseModel, Base):
     if storage_type == 'db':
         cities = relationship('City', cascade='all, delete', backref='state')
     else:
+        name = ""
+
         @property
         def cities(self):
             """ Getter attribute cities """
             from models import storage
-            city_list = []
-            for city in storage.all(City).values():
+            citiesList = []
+            citiesAll = storage.all(City)
+            for city in citiesAll.values():
                 if city.state_id == self.id:
-                    city_list.append(city)
-            return city_list
+                    citiesList.append(city)
+            return citiesList
+
+        # @property
+        # def cities(self):
+        #    """ Getter attribute cities """
+        #    from models import storage
+        #    city_list = []
+        #    for city in storage.all(City).values():
+        #        if city.state_id == self.id:
+        #            city_list.append(city)
+        #    return city_list
