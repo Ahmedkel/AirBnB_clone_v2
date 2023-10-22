@@ -10,6 +10,7 @@ app = Flask(__name__)
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
 def states_list(id=None):
+    """ load all cities of a State """
     states = storage.all("State")
     if id:
         key = "State." + id
@@ -17,6 +18,7 @@ def states_list(id=None):
     else:
         state = None
     return render_template('9-states.html', states=states, state=state)
+
 
 @app.teardown_appcontext
 def teardown_db(exception=None):
